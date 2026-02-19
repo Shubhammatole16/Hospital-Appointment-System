@@ -1,0 +1,156 @@
+<div class="container py-4">
+
+  <!-- ================= Header ================= -->
+  <div class="dash-header mb-4">
+    <div>
+      <h2 class="dash-title mb-1">Patient Dashboard</h2>
+      <div class="dash-subtitle">Manage your appointments easily</div>
+    </div>
+
+    <div class="d-flex gap-2 flex-wrap">
+
+      <button class="dash-btn-outline"
+              *ngIf="!showBookForm"
+              (click)="openBookForm()">
+        + Book Appointment
+      </button>
+
+      <button class="dash-btn-outline"
+              *ngIf="showBookForm"
+              (click)="closeBookForm()">
+        Close
+      </button>
+    </div>
+  </div>
+
+
+  <div class="row g-4">
+
+    <!-- ================= My Appointments ================= -->
+    <div class="col-lg-7">
+      <div class="dash-card">
+        <div class="dash-card-head">
+          <h5 class="mb-0">My Appointments</h5>
+        </div>
+
+        <div class="dash-card-body">
+
+          <div class="table-responsive">
+            <table class="table dash-table align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>Doctor</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Status</th>
+                  <th class="text-end">Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let a of appointments">
+
+                  <td>
+                    <div class="fw-semibold">{{ a.doctorName }}</div>
+                    <div class="text-muted small">{{ a.specialization }}</div>
+                  </td>
+
+                  <td class="text-nowrap">{{ a.appointmentDate }}</td>
+                  <td class="text-nowrap">{{ a.appointmentTime }}</td>
+
+                  <td>
+                    <span class="dash-badge dash-badge-booked"
+                          *ngIf="a.status==='BOOKED'">BOOKED</span>
+
+                    <span class="dash-badge dash-badge-cancelled"
+                          *ngIf="a.status==='CANCELLED'">CANCELLED</span>
+
+                    <span class="dash-badge dash-badge-completed"
+                          *ngIf="a.status==='COMPLETED'">COMPLETED</span>
+                  </td>
+
+                  <td class="text-end">
+                    <button class="dash-btn-outline-danger-sm"
+                            *ngIf="a.status==='BOOKED'"
+                            (click)="cancelAppointment(a.id)">
+                      Cancel
+                    </button>
+
+                    <span class="text-muted small"
+                          *ngIf="a.status!=='BOOKED'">—</span>
+                  </td>
+
+                </tr>
+
+                <tr *ngIf="appointments.length === 0">
+                  <td colspan="5"
+                      class="text-center text-muted py-5">
+                    No appointments found
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= Book Appointment Panel ================= -->
+    <div class="col-lg-5" *ngIf="showBookForm">
+      <div class="dash-card">
+        <div class="dash-card-head">
+          <h5 class="mb-0">Book Appointment</h5>
+        </div>
+
+        <div class="dash-card-body">
+
+          <label class="dash-label">Select Doctor</label>
+          <select class="form-select dash-input mb-3"
+                  [(ngModel)]="form.doctorId"
+                  name="doctorId">
+            <option value="" disabled>Select Doctor</option>
+            <option *ngFor="let d of doctors" [value]="d.id">
+              {{ d.name }} — {{ d.specialization }}
+            </option>
+          </select>
+
+          <div class="row g-2 mb-3">
+            <div class="col-6">
+              <label class="dash-label">Date</label>
+              <input type="date"
+                     class="form-control dash-input"
+                     [(ngModel)]="form.appointmentDate"
+                     name="appointmentDate">
+            </div>
+            <div class="col-6">
+              <label class="dash-label">Time</label>
+              <input type="time"
+                     class="form-control dash-input"
+                     [(ngModel)]="form.appointmentTime"
+                     name="appointmentTime">
+            </div>
+          </div>
+
+          <label class="dash-label">Reason</label>
+          <input class="form-control dash-input mb-3"
+                 placeholder="Eg: Fever, headache..."
+                 [(ngModel)]="form.reason"
+                 name="reason">
+
+          <button class="dash-btn-outline w-100"
+                  (click)="book()">
+            Confirm Booking
+          </button>
+
+          <div class="dash-card-subtext mt-3">
+            Tip: You can book multiple appointments.
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

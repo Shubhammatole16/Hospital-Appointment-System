@@ -1,0 +1,59 @@
+/* Right-side action buttons in tabs row */
+.dash-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Form layout inside cards */
+.dash-form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+/* Small submit button */
+.dash-submit-btn {
+  padding: 6px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid #111827;
+  color: #111827;
+  cursor: pointer;
+}
+
+.dash-submit-btn:hover {
+  background-color: #f3f4f6;
+}
+
+/* Center form container */
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+/* Smaller form card */
+.form-card {
+  width: 100%;
+  max-width: 650px;
+}
+
+/* Close button inside form */
+.dash-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0 6px;
+}
+
+.dash-close-btn:hover {
+  color: #111827;
+}
+

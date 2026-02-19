@@ -1,0 +1,268 @@
+<!-- ======================================================
+     ADMIN DASHBOARD (Hospital Appointment System)
+     - Switch between Appointments / Doctors / Patients
+     - Manage records (Delete/Remove)
+     - No TS changes required
+====================================================== -->
+
+<div class="container py-4">
+
+  <!-- ================= Header ================= -->
+  <div class="dash-header mb-4">
+    <div>
+      <h2 class="dash-title mb-1">Admin Dashboard</h2>
+      <div class="dash-subtitle">Appointments, Doctors & Patients</div>
+    </div>
+  </div>
+
+  <!-- ================= Tabs / Switch Buttons ================= -->
+  <div class="dash-tabs mb-4">
+    <button class="dash-tab" [class.active]="view==='appointments'" (click)="openAppointments()">
+      Appointments
+    </button>
+    <button class="dash-tab" [class.active]="view==='doctors'" (click)="openDoctors()">
+      Doctors
+    </button>
+    <button class="dash-tab" [class.active]="view==='patients'" (click)="openPatients()">
+      Patients
+    </button>
+
+    <!-- Right-side actions -->
+    <div class="dash-actions">
+      <button class="dash-btn-outline" (click)="openAddDoctor()">+ Add Doctor</button>
+      <button class="dash-btn-outline" (click)="openAddPatient()">+ Add Patient</button>
+    </div>
+  </div>
+  
+  
+  <!-- ========== ADD DOCTOR FORM ========== -->
+  <div class="form-wrapper" *ngIf="showAddDoctor">
+    <div class="dash-card form-card">
+  
+      <div class="dash-card-head d-flex justify-content-between align-items-center">
+        <div>
+          <h5 class="mb-0">Add Doctor</h5>
+          <div class="dash-card-subtext">Create a new doctor account</div>
+        </div>
+  
+        <!-- Close button -->
+        <button class="dash-close-btn" (click)="showAddDoctor=false">
+          ✕
+        </button>
+      </div>
+  
+      <div class="dash-card-body">
+  
+        <input class="form-control dash-input mb-2" placeholder="Name" [(ngModel)]="doctorForm.name" name="dn">
+  
+        <input class="form-control dash-input mb-2" placeholder="Email" [(ngModel)]="doctorForm.email" name="de">
+  
+        <input class="form-control dash-input mb-2" placeholder="Password" [(ngModel)]="doctorForm.password" name="dp">
+  
+        <input class="form-control dash-input mb-3" placeholder="Specialization" [(ngModel)]="doctorForm.specialization"
+          name="ds">
+  
+        <div class="text-center">
+          <button class="dash-submit-btn" (click)="addDoctor()">
+            Save Doctor
+          </button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- ========== ADD PATIENT FORM ========== -->
+  <div class="form-wrapper" *ngIf="showAddPatient">
+    <div class="dash-card form-card">
+      <div class="dash-card-head d-flex justify-content-between align-items-center">
+        <div>
+          <h5 class="mb-0">Add Patient</h5>
+          <div class="dash-card-subtext">Create a new patient account</div>
+        </div>
+  
+        <!-- Close button -->
+        <button class="dash-close-btn" (click)="showAddPatient=false">
+          ✕
+        </button>
+      </div>
+  
+      <div class="dash-card-body">
+  
+        <input class="form-control dash-input mb-2" placeholder="Name" [(ngModel)]="patientForm.name" name="pn">
+  
+        <input class="form-control dash-input mb-2" placeholder="Email" [(ngModel)]="patientForm.email" name="pe">
+  
+        <input class="form-control dash-input mb-3" placeholder="Password" [(ngModel)]="patientForm.password" name="pp">
+  
+        <div class="text-center">
+          <button class="dash-submit-btn" (click)="addPatient()">
+            Save Patient
+          </button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================= APPOINTMENTS ================= -->
+  <div class="dash-card" *ngIf="view==='appointments'">
+    <div class="dash-card-head">
+      <div>
+        <h5 class="mb-0">Appointments</h5>
+        <div class="dash-card-subtext">All scheduled appointments in the system</div>
+      </div>
+    </div>
+
+    <div class="dash-card-body">
+      <div class="table-responsive">
+        <table class="table dash-table align-middle mb-0">
+          <thead>
+            <tr>
+              <th>Patient</th>
+              <th>Doctor</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Status</th>
+              <th class="text-end">Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let a of appointments">
+              <td class="fw-semibold">{{a.patientName}}</td>
+              <td>{{a.doctorName}}</td>
+              <td>{{a.appointmentDate}}</td>
+              <td>{{a.appointmentTime}}</td>
+
+              <td>
+                <span class="dash-badge dash-badge-booked" *ngIf="a.status==='BOOKED'">BOOKED</span>
+                <span class="dash-badge dash-badge-cancelled" *ngIf="a.status==='CANCELLED'">CANCELLED</span>
+                <span class="dash-badge dash-badge-completed" *ngIf="a.status==='COMPLETED'">COMPLETED</span>
+              </td>
+
+              <td class="text-end">
+                <button class="dash-btn-outline-danger-sm" (click)="removeAppointment(a.id)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+
+            <tr *ngIf="appointments.length===0">
+              <td colspan="6" class="text-center text-muted py-5">No appointments</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div class="dash-pager mt-3">
+        <div class="text-muted small">Page {{apptPage+1}} of {{apptTotalPages || 1}}</div>
+        <div class="d-flex gap-2">
+          <button class="dash-btn-outline-sm" (click)="apptPrev()" [disabled]="apptPage===0">Prev</button>
+          <button class="dash-btn-outline-sm" (click)="apptNext()" [disabled]="apptPage>=apptTotalPages-1">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= DOCTORS ================= -->
+  <div class="dash-card" *ngIf="view==='doctors'">
+    <div class="dash-card-head">
+      <div>
+        <h5 class="mb-0">Doctors</h5>
+        <div class="dash-card-subtext">All registered doctors</div>
+      </div>
+    </div>
+
+    <div class="dash-card-body">
+      <div class="table-responsive">
+        <table class="table dash-table align-middle mb-0">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th class="text-end">Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let d of doctors">
+              <td class="fw-semibold">{{d.name}}</td>
+              <td>{{d.email}}</td>
+              <td class="text-end">
+                <button class="dash-btn-outline-danger-sm" (click)="removeDoctor(d.id)">
+                  Remove
+                </button>
+              </td>
+            </tr>
+
+            <tr *ngIf="doctors.length===0">
+              <td colspan="3" class="text-center text-muted py-5">No doctors</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div class="dash-pager mt-3">
+        <div class="text-muted small">Page {{docPage+1}} of {{docTotalPages || 1}}</div>
+        <div class="d-flex gap-2">
+          <button class="dash-btn-outline-sm" (click)="docPrev()" [disabled]="docPage===0">Prev</button>
+          <button class="dash-btn-outline-sm" (click)="docNext()" [disabled]="docPage>=docTotalPages-1">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PATIENTS ================= -->
+  <div class="dash-card" *ngIf="view==='patients'">
+    <div class="dash-card-head">
+      <div>
+        <h5 class="mb-0">Patients</h5>
+        <div class="dash-card-subtext">All registered patients</div>
+      </div>
+    </div>
+
+    <div class="dash-card-body">
+      <div class="table-responsive">
+        <table class="table dash-table align-middle mb-0">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th class="text-end">Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let p of patients">
+              <td class="fw-semibold">{{p.name}}</td>
+              <td>{{p.email}}</td>
+              <td class="text-end">
+                <button class="dash-btn-outline-danger-sm" (click)="removePatient(p.id)">
+                  Remove
+                </button>
+              </td>
+            </tr>
+
+            <tr *ngIf="patients.length===0">
+              <td colspan="3" class="text-center text-muted py-5">No patients</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div class="dash-pager mt-3">
+        <div class="text-muted small">Page {{patPage+1}} of {{patTotalPages || 1}}</div>
+        <div class="d-flex gap-2">
+          <button class="dash-btn-outline-sm" (click)="patPrev()" [disabled]="patPage===0">Prev</button>
+          <button class="dash-btn-outline-sm" (click)="patNext()" [disabled]="patPage>=patTotalPages-1">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

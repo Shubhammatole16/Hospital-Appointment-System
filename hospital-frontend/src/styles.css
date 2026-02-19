@@ -1,0 +1,348 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+
+   /* =========================================================
+                    LOGIN AND REGISTER
+   ========================================================= */
+
+/* Page background */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: radial-gradient(900px circle at 15% 10%, rgba(13,110,253,.16), transparent 45%),
+              radial-gradient(700px circle at 85% 20%, rgba(25,135,84,.14), transparent 40%),
+              linear-gradient(180deg, #f7fbff, #ffffff);
+}
+
+/* Center container for auth pages */
+.auth-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 12px;
+}
+
+/* Card styling */
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  border: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(16, 24, 40, 0.12);
+  background: #fff;
+}
+
+
+/* Card padding */
+.auth-body {
+  padding: 26px;
+}
+
+/* Title + subtitle */
+.auth-title {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.auth-subtitle {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #6c757d;
+}
+
+/* Inputs */
+.auth-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #344054;
+  margin-bottom: 6px;
+}
+
+.auth-input {
+  border-radius: 12px;
+  padding: 12px 12px;
+  border: 1px solid #e6eaf0;
+  background: #fbfcfe;
+}
+
+.auth-input:focus {
+  box-shadow: none;
+  border-color: rgba(13,110,253,.55);
+  background: #fff;
+}
+
+/* Clean Button */
+.auth-btn {
+  display: inline-block;
+  padding: 6px 16px;        
+  font-size: 14px;          
+  font-weight: 600;
+  border-radius: 6px;         
+  background-color: transparent;
+  border: 1.5px solid #d0d5dd; 
+  color: #344054;
+  transition: 0.2s ease;
+}
+
+/* Footer text */
+.auth-footer {
+  text-align: center;
+  margin-top: 14px;
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.auth-link {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #0d6efd;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.auth-btn:hover {
+  background-color: #f2f4f7;
+  color: #344054;
+}
+
+/* Small helper line */
+.auth-note {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 12px;
+  color: #98a2b3;
+}
+
+
+
+/* =========================================================
+                    DOCTOR DASHBOARD 
+========================================================= */
+
+/* Header wrapper */
+.dash-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 18px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #eef2f6;
+  box-shadow: 0 10px 30px rgba(16, 24, 40, 0.06);
+}
+
+.dash-title {
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.dash-subtitle {
+  color: #6c757d;
+  font-size: 13px;
+}
+
+/* Card container */
+.dash-card {
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #eef2f6;
+  box-shadow: 0 12px 34px rgba(16, 24, 40, 0.06);
+  overflow: hidden;
+}
+
+/* Card header */
+.dash-card-head {
+  padding: 16px 18px;
+  border-bottom: 1px solid #eef2f6;
+  background: #fbfcfe;
+}
+
+.dash-card-subtext {
+  font-size: 12px;
+  color: #6c757d;
+  margin-top: 4px;
+}
+
+/* Card body */
+.dash-card-body {
+  padding: 10px 10px;
+}
+
+/* Table styling */
+.dash-table thead th {
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  color: #667085;
+  background: #fbfcfe;
+  border-bottom: 1px solid #eef2f6;
+  padding: 12px 14px;
+}
+
+.dash-table tbody td {
+  padding: 14px 14px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.dash-table tbody tr:nth-child(even) td {
+  background: #fcfdff;
+}
+
+/* Badges */
+.dash-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  border: 1px solid transparent;
+}
+
+.dash-badge-booked {
+  background: #ecfdf3;
+  color: #027a48;
+  border-color: #abefc6;
+}
+
+.dash-badge-cancelled {
+  background: #fff1f3;
+  color: #c01048;
+  border-color: #fecdd6;
+}
+
+.dash-badge-completed {
+  background: #f2f4f7;
+  color: #344054;
+  border-color: #e4e7ec;
+}
+
+/* Buttons (minimal, not filled, static) */
+.dash-btn-outline {
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid #cbd5e1;
+  color: #344054;
+  cursor: pointer;
+}
+
+.dash-btn-outline:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+
+.dash-btn-outline-danger {
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid #f1aeb5;
+  color: #b02a37;
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   ADMIN DASHBOARD EXTRA STYLES (STATIC)
+   Add to src/styles.css
+========================================================= */
+
+/* Tabs row */
+.dash-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Tab button (outlined, not filled) */
+.dash-tab {
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid #cbd5e1;
+  color: #344054;
+  cursor: pointer;
+}
+
+.dash-tab:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+
+/* Active tab (still NOT filled fully — just light background) */
+.dash-tab.active {
+  background: #f2f4f7;
+  border-color: #98a2b3;
+  color: #111827;
+}
+
+/* Small outline buttons for pagination */
+.dash-btn-outline-sm {
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid #cbd5e1;
+  color: #344054;
+  cursor: pointer;
+}
+
+.dash-btn-outline-sm:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+
+/* Small danger outline button */
+.dash-btn-outline-danger-sm {
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 800;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid #f1aeb5;
+  color: #b02a37;
+  cursor: pointer;
+}
+
+.dash-btn-outline-danger:hover,
+.dash-btn-outline-danger-sm:hover {
+  background: #fff1f3;
+  border-color: #e11d48;
+  color: #9f1239;
+}
+
+/* Pager layout */
+.dash-pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 4px 0 4px;
+}
+
+/* Inputs */
+.dash-input {
+  border-radius: 8px;
+  border: 1px solid #e4e7ec;
+  padding: 8px 10px;
+}
+
+.dash-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #667085;
+  margin-bottom: 6px;
+  display: block;
+}
+
+
+

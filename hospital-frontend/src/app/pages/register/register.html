@@ -1,0 +1,75 @@
+<!-- REGISTER PAGE - Hospital Appointment System -->
+<div class="auth-wrap">
+  <div class="auth-card">
+
+    <!-- Accent bar (medical theme look) -->
+    <div class="auth-accent"></div>
+
+    <div class="auth-body">
+      <!-- Title -->
+      <div class="text-center mb-4">
+        <h3 class="auth-title">Create Account</h3>
+        <div class="auth-subtitle">Register as Patient or Doctor</div>
+      </div>
+
+      <!-- Full Name -->
+      <div class="mb-3">
+        <div class="auth-label">Full Name</div>
+        <input type="text"
+               class="form-control auth-input"
+               [(ngModel)]="form.name"
+               name="name"
+               placeholder="Enter your full name">
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <div class="auth-label">Email</div>
+        <input type="email"
+               class="form-control auth-input"
+               [(ngModel)]="form.email"
+               name="email"
+               placeholder="Enter your email">
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <div class="auth-label">Password</div>
+        <input type="password"
+               class="form-control auth-input"
+               [(ngModel)]="form.password"
+               name="password"
+               placeholder="Create a password">
+      </div>
+
+      <!-- Role -->
+      <div class="mb-3">
+        <div class="auth-label">Role</div>
+        <select class="form-select auth-input"
+                [(ngModel)]="form.role"
+                name="role">
+          <option value="PATIENT">Select role</option>
+          <option value="PATIENT">Patient</option>
+          <option value="DOCTOR" disabled>Doctor</option>
+          <option value="ADMIN" disabled>ADMIN</option>
+        </select>
+      </div>
+
+      <!-- Register button -->
+      <button class="btn btn-primary w-100 auth-btn" (click)="register()">
+        Register
+      </button>
+
+      <!-- Login link -->
+      <div class="auth-footer">
+        Already have an account?
+        <button type="button" class="auth-link" (click)="goLogin()">
+          Login
+        </button>
+      </div>
+
+      <!-- Note -->
+      <div class="auth-note">Your data is protected and confidential</div>
+    </div>
+  </div>
+</div>

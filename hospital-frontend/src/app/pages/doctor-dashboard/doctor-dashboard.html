@@ -1,0 +1,90 @@
+<!-- ======================================================
+     DOCTOR DASHBOARD (Hospital Appointment System)
+====================================================== -->
+
+<div class="container py-4">
+
+  <!-- ================= Header Section ================= -->
+  <div class="dash-header mb-4">
+
+    <!-- Left: Title + Welcome -->
+    <div>
+      <h2 class="dash-title mb-1">Doctor Dashboard</h2>
+      <div class="dash-subtitle">
+        Welcome Dr. <span class="fw-semibold">{{ user?.name }}</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= Appointments Card ================= -->
+  <div class="dash-card">
+
+    <!-- Card Header -->
+    <div class="dash-card-head">
+      <div>
+        <h5 class="mb-0">My Appointments</h5>
+        <div class="dash-card-subtext">View and manage your scheduled patients</div>
+      </div>
+    </div>
+
+    <!-- Card Body -->
+    <div class="dash-card-body">
+
+      <div class="table-responsive">
+        <table class="table dash-table align-middle mb-0">
+
+          <!-- Table Header -->
+          <thead>
+            <tr>
+              <th>Patient</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Reason</th>
+              <th>Status</th>
+              <th class="text-end">Action</th>
+            </tr>
+          </thead>
+
+          <!-- Table Body -->
+          <tbody>
+
+            <!-- Appointments List -->
+            <tr *ngFor="let a of appointments">
+              <td class="fw-semibold">{{ a.patientName }}</td>
+              <td>{{ a.appointmentDate }}</td>
+              <td>{{ a.appointmentTime }}</td>
+              <td class="text-muted">{{ a.reason }}</td>
+
+              <!-- Status Badges (kept simple and readable) -->
+              <td>
+                <span class="dash-badge dash-badge-booked" *ngIf="a.status==='BOOKED'">BOOKED</span>
+                <span class="dash-badge dash-badge-cancelled" *ngIf="a.status==='CANCELLED'">CANCELLED</span>
+                <span class="dash-badge dash-badge-completed" *ngIf="a.status==='COMPLETED'">COMPLETED</span>
+              </td>
+
+              <!-- Action -->
+              <td class="text-end">
+                <button class="dash-btn-outline" *ngIf="a.status==='BOOKED'"
+                        (click)="completeAppointment(a.id)">
+                  Complete
+                </button>
+                <span class="text-muted small" *ngIf="a.status!=='BOOKED'">—</span>
+              </td>
+            </tr>
+
+            <!-- Empty State -->
+            <tr *ngIf="appointments.length===0">
+              <td colspan="6" class="text-center text-muted py-5">
+                No appointments assigned
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+</div>

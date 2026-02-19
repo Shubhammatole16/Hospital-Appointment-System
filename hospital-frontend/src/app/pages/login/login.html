@@ -1,0 +1,49 @@
+<!-- LOGIN PAGE - Hospital Appointment System -->
+<div class="auth-wrap">
+  <div class="auth-card">
+
+    <!-- Accent bar (medical theme look) -->
+    <div class="auth-accent"></div>
+
+    <div class="auth-body">
+      <!-- Title -->
+      <div class="text-center mb-4">
+        <h3 class="auth-title">Welcome Back</h3>
+        <div class="auth-subtitle">Login to book and manage appointments</div>
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <div class="auth-label">Email</div>
+        <input class="form-control auth-input"
+               placeholder="Enter your email"
+               [(ngModel)]="form.email">
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <div class="auth-label">Password</div>
+        <input type="password"
+               class="form-control auth-input"
+               placeholder="Enter your password"
+               [(ngModel)]="form.password">
+      </div>
+
+      <!-- Login button -->
+      <button class="btn btn-primary w-100 auth-btn" (click)="login()">
+        Login
+      </button>
+
+      <!-- Register link -->
+      <div class="auth-footer">
+        Don’t have an account?
+        <button type="button" class="auth-link" (click)="goRegister()">
+          Register
+        </button>
+      </div>
+
+      <!-- Note -->
+      <div class="auth-note">Secure login for Patients & Doctors</div>
+    </div>
+  </div>
+</div>

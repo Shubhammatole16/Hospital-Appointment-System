@@ -1,0 +1,39 @@
+<nav class="main-navbar" *ngIf="isLoggedIn()">
+  <div class="container nav-wrapper">
+
+    <!-- Logo + Brand -->
+    <div class="nav-left">
+      <img src="hospital-logo.png" class="nav-logo" alt="Hospital Logo">
+
+      <span class="nav-brand" (click)="goHome()">
+        Hospital System
+      </span>
+    </div>
+
+    <!-- Role Links -->
+    <div class="nav-center">
+      <ng-container *ngIf="user?.role === 'ADMIN'">
+        <a routerLink="/admin" routerLinkActive="active">Dashboard</a>
+      </ng-container>
+
+      <ng-container *ngIf="user?.role === 'PATIENT'">
+        <a routerLink="/patient" routerLinkActive="active">My Appointments</a>
+      </ng-container>
+
+      <ng-container *ngIf="user?.role === 'DOCTOR'">
+        <a routerLink="/doctor" routerLinkActive="active">My Schedule</a>
+      </ng-container>
+    </div>
+
+    <!-- User Info -->
+    <div class="nav-right">
+      <div class="nav-user">
+        <div>{{ user?.name }}</div>
+        <small>{{ user?.role }}</small>
+      </div>
+
+      <button class="nav-logout" (click)="logout()">Logout</button>
+    </div>
+
+  </div>
+</nav>
